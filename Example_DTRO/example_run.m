@@ -64,7 +64,7 @@ conv.nbiter=300;
 graph_adj=(ones(nbnodes,nbnodes)-eye(nbnodes));
 
 % TI-DTRO
-[W,rho_track,norm_track,norm_star_track]=distrib_trace_func_graph(params,data,graph_adj,conv,debug,W_star);
+[W,rho_track,norm_track,norm_star_track]=ti_dtro(params,data,graph_adj,conv,debug,W_star);
 
 % Plot the MSE
 loglog(norm_star_track,'b','LineWidth',2)

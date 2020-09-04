@@ -1,4 +1,4 @@
-function [w,rho_track,norm_track,norm_star_track]=distrib_trace_func_graph(params,data,graph_adj,conv,debug,W_star)
+function [w,rho_track,norm_track,norm_star_track]=ti_dtro(params,data,graph_adj,conv,debug,W_star)
 
 % Function running the distributed trace ratio algorithm on a random
 % connected graph.
@@ -43,8 +43,9 @@ function [w,rho_track,norm_track,norm_star_track]=distrib_trace_func_graph(param
 %
 % EXTERNAL FUNCTIONS
 % dijkstra.m : Joseph Kirk (2020). Dijkstra's Shortest Path Algorithm 
-% (https://www.mathworks.com/matlabcentral/fileexchange/12850-dijkstra-s-shortest-path-algorithm), 
-% MATLAB Central File Exchange. Retrieved May 5, 2020.
+% https://www.mathworks.com/matlabcentral/fileexchange/20025-dijkstra-s-minimum-cost-path-algorithm?s_tid=prof_contriblnk
+% MATLAB Central File Exchange.
+%
 % Can be replaced by other algorithms pruning the graph to a tree.
 
 

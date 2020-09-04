@@ -81,4 +81,4 @@ The Software constitutes any software distributed as part of or pertaining to th
 
 #### A.2 References:
 
-
+[1] C. A. Musluoglu and A. Bertrand, “Distributed trace ratio optimizationin fully-connected sensor networks,” inProc. European Signal Process-ing Conference (EUSIPCO), 2020, pp. 1–5.
