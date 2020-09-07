@@ -1,30 +1,36 @@
-# Distributed Trace Ratio (DTRO) optimization
+This folder contains the code to obtain the figures shown in [1].  
+The following scripts contain implement independent Monte-Carlo runs, and can therefore take hours to finish computing.  
+`dtro_full_mc_K.m` : Script to run the DTRO algorithm for various number of nodes *K*.  
+`dtro_full_mc_Q.m` : Script to run the DTRO algorithm for various number of projection dimensions *Q*.  
+`dtro_full_mc_topo.m` : Script to run the DTRO algorithm for various network topologies.  
+`dtro_full_mc.m` : Script to run the DTRO algorithm for one specific network.  
 
-This repository contains the algorithms implementations and examples to solve the TRO problem in a distributed fashion [1], i.e., the following problem:
+Each script outputs a '_.mat' file, which can then be used to plot the results shown in [1].  
 
-            minimize       trace(X'AX)/trace(X'BX)
-            subject to     X'X=I.
+`plot_func.m` : Script in the *plots* folder which plots the figures in [1]. Assumes the '_.mat' data files are in the *plots* folder.  
 
-
-# *Example_DTRO*
-
-The folder *Example_DTRO* contains the implementations to run the TI-DTRO algorithm.
-    'create_data.m': Functions to create synthetic signals following the models described in [1].
-    'make_sym.m': Function to force a matrix to be symmetric.
-    'trace_ratio.m': Function to solve the TRO problem in a centralized way. Results used as ground truth.
-    'ti_dtro.m': Function implementing the TI-DTRO algorithm. *Note: This algorithm works for any connected graph, including trees and fully-connected networks.*
-    'example_run.m': Script to run the TI-DTRO algorithm. Plots the MSE.
-
-
-**EXTERNAL DEPENDENCIES**:
-dijkstra.m : Joseph Kirk (2020). Dijkstra's Shortest Path Algorithm 
+**EXTERNAL DEPENDENCIES**:  
+* `dijkstra.m` : Joseph Kirk (2020). Dijkstra's Shortest Path Algorithm 
 https://www.mathworks.com/matlabcentral/fileexchange/20025-dijkstra-s-minimum-cost-path-algorithm?s_tid=prof_contriblnk, 
-MATLAB Central File Exchange.
+MATLAB Central File Exchange.  
 
-**Note: This function can be replaced by other algorithms pruning the graph to a tree.**
+Used to compute the shortest path pruning of a connected network. **Note: This function can be replaced by other algorithms pruning the graph to a tree.**  
 
-# *dtro_full*
+* The *Random trees* package https://www.mathworks.com/matlabcentral/fileexchange/2516-random-trees .  
 
-The folder *dtro_full* contains the codes to obtain the graphs shown in [1]. More details can be found within the folder.
+Used to create randomly generated trees.  
+
+* The Graph Signal Processing Toolbox https://epfl-lts2.github.io/gspbox-html/ [2].  
+
+Used for creating random graphs using the Erd&#337-R&#233nyi model.  
+
+* The 'legendflex' package https://www.mathworks.com/matlabcentral/fileexchange/31092-legendflex-m-a-more-flexible-customizable-legend .  
+
+Used for the legends in the plots.
+
+
+## References ##
 
 [1] C. A. Musluoglu and A. Bertrand, “Distributed adaptive trace ratio optimization in wireless sensor networks”.
+
+[2] Perraudin Nathanaël, Johan Paratte, David Shuman, Lionel Martin, Vassilis Kalofolias, Pierre Vandergheynst and David K. Hammond}, GSPBOX: A toolbox for signal processing on graphs. Arxiv e-print, 08-2014.

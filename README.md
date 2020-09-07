@@ -8,16 +8,17 @@ This repository contains the algorithms implementations and examples to solve th
 
 # *Example_DTRO*
 
-The folder *Example_DTRO* contains the implementations to run the TI-DTRO algorithm.
-    'create_data.m': Functions to create synthetic signals following the models described in [1].
-    'make_sym.m': Function to force a matrix to be symmetric.
-    'trace_ratio.m': Function to solve the TRO problem in a centralized way. Results used as ground truth.
-    'ti_dtro.m': Function implementing the TI-DTRO algorithm. *Note: This algorithm works for any connected graph, including trees and fully-connected networks.*
-    'example_run.m': Script to run the TI-DTRO algorithm. Plots the MSE.
+The folder *Example_DTRO* contains the implementations to run the TI-DTRO algorithm.  
+
+* `create_data.m`: Functions to create synthetic signals following the models described in [1].  
+* `make_sym.m`: Function to force a matrix to be symmetric.  
+* `trace_ratio.m`: Function to solve the TRO problem in a centralized way. Results are used as ground truth.  
+* `ti_dtro.m`: Function implementing the TI-DTRO algorithm. *Note: This algorithm works for any connected graph, including trees and fully-connected networks.*  
+* `example_run.m`: Script to run the TI-DTRO algorithm. Plots the MSE.  
 
 
 **EXTERNAL DEPENDENCIES**:
-dijkstra.m : Joseph Kirk (2020). Dijkstra's Shortest Path Algorithm 
+`dijkstra.m` : Joseph Kirk (2020). Dijkstra's Shortest Path Algorithm 
 https://www.mathworks.com/matlabcentral/fileexchange/20025-dijkstra-s-minimum-cost-path-algorithm?s_tid=prof_contriblnk, 
 MATLAB Central File Exchange.
 
@@ -26,5 +27,7 @@ MATLAB Central File Exchange.
 # *dtro_full*
 
 The folder *dtro_full* contains the codes to obtain the graphs shown in [1]. More details can be found within the folder.
+
+## References ##
 
 [1] C. A. Musluoglu and A. Bertrand, “Distributed adaptive trace ratio optimization in wireless sensor networks”.
