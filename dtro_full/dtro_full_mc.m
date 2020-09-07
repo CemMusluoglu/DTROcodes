@@ -11,7 +11,8 @@ nbsens=sum(nbsensnode);
 
 Q_data=5;
 Q=5;
-D=10;
+
+h=waitbar(0,'Computing');
 
 for n_runs=1:mc_runs
 
@@ -29,6 +30,7 @@ for n_runs=1:mc_runs
     params.nbnodes=nbnodes;
     params.nbsensnode=nbsensnode;
     params.denom_sum=0;
+    params.sgn_sync=0;
 
     conv=struct;
     conv.tol_rho=1e-12;
@@ -52,22 +54,18 @@ for n_runs=1:mc_runs
 
     [rho_track_FC,~,norm_star_FC]=run_tro('FC',params,data,conv,debug,W_star);
     [rho_track_RT,~,norm_star_RT,alg_connect_RT]=run_tro('RT',params,data,conv,debug,W_star);
-    
-
-    %rho_star_cell{n_runs}=rho_star;
 
     norm_star_cell_FC{n_runs}=norm_star_FC;
     norm_star_cell_RT{n_runs}=norm_star_RT;
     
+    waitbar(n_runs/mc_runs,h,[sprintf('%3.2f',100*n_runs/mc_runs),'%'])
 
-    %rho_cell_RT{n_runs}=rho_track_RT;
-    %rho_cell_FC{n_runs}=rho_track_FC;
-    
-    n_runs
     
 end
 
 save conv_rate.mat norm_star_cell_RT norm_star_cell_FC
+
+close(h)
 
 function [rho_track,norm_track,norm_star_track,alg_connect]=run_tro(type,params,data,conv,debug,W_star,reg_param)
     if isequal(type,'FC')

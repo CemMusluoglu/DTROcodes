@@ -7,7 +7,8 @@ nbsamples=10000;
 
 Q_data=3;
 Q=3;
-D=10;
+
+h=waitbar(0,'Computing');
 
 for nbnodes=[10,50]
     
@@ -30,6 +31,7 @@ for nbnodes=[10,50]
         params.nbnodes=nbnodes;
         params.nbsensnode=nbsensnode;
         params.denom_sum=0;
+        params.sgn_sync=1;
 
         conv=struct;
         conv.tol_rho=1e-12;
@@ -48,24 +50,16 @@ for nbnodes=[10,50]
         % Distributed trace ratio
 
         conv.tol_rho=-1;
-        conv.nbiter=30*100;
+        conv.nbiter=3000;
         params.follow_path=2;
 
         [rho_track_FC,~,norm_star_FC]=run_tro('FC',params,data,conv,debug,W_star);
         [rho_track_RT,~,norm_star_RT,alg_connect_RT]=run_tro('RT',params,data,conv,debug,W_star);
 
-
-        %rho_star_cell{n_runs}=rho_star;
-
         norm_star_cell_FC{n_runs}=norm_star_FC;
         norm_star_cell_RT{n_runs}=norm_star_RT;
 
-
-
-        %rho_cell_RT{n_runs}=rho_track_RT;
-        %rho_cell_FC{n_runs}=rho_track_FC;
-
-        n_runs
+        waitbar((n_runs+mc_runs*(nbnodes-10)/40)/(mc_runs*2),h,[sprintf('%3.2f',100*(n_runs+mc_runs*(nbnodes-10)/40)/(mc_runs*2)),'%'])
 
     end
     
@@ -74,6 +68,8 @@ for nbnodes=[10,50]
 
     
 end
+
+close(h)
 
 function [rho_track,norm_track,norm_star_track,alg_connect]=run_tro(type,params,data,conv,debug,W_star,reg_param)
     if isequal(type,'FC')

@@ -5,6 +5,7 @@ Q=params.Q;
 nbnodes=params.nbnodes;
 nbsensnode=params.nbsensnode;
 denom_sum=params.denom_sum;
+sgn_sync=params.sgn_sync;
 
 Ruu=data.R_first;
 Rvv=data.R_second;
@@ -89,12 +90,13 @@ while (tol_rho>0 && abs(rho-rho_old)>tol_rho) || (i<nbiter)
     
     if nargin>4
         
-        for l=1:Q
-            if sum(sum((W_star(:,l)-w(:,l)).^2))>sum(sum((-W_star(:,l)-w(:,l)).^2))
-                w(:,l)=-w(:,l);
+        if(sgn_sync==1)
+            for l=1:Q
+                if sum(sum((W_star(:,l)-w(:,l)).^2))>sum(sum((-W_star(:,l)-w(:,l)).^2))
+                    w(:,l)=-w(:,l);
+                end
             end
         end
-        
         norm_star_track=[norm_star_track,norm(w-W_star,'fro')^2/numel(W_star)];
     end
 
