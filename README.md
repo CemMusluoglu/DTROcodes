@@ -6,6 +6,8 @@ This repository contains the algorithms implementations and examples to solve th
             subject to     X'X=I.
 
 
+# *Example_DTRO*
+
 The folder *Example_DTRO* contains the implementations to run the TI-DTRO algorithm.
     'create_data.m': Functions to create synthetic signals following the models described in [1].
     'make_sym.m': Function to force a matrix to be symmetric.
@@ -21,4 +23,4 @@ MATLAB Central File Exchange.
 
 **Can be replaced by other algorithms pruning the graph to a tree.**
 
-[1] C. A. Musluoglu and A. Bertrand, “Distributed trace ratio optimization in fully-connected sensor networks,” inProc. European Signal Process-ing Conference (EUSIPCO), 2020, pp. 1–5.
+[1] C. A. Musluoglu and A. Bertrand, “Distributed adaptive trace ratio optimization in wireless sensor networks”.
