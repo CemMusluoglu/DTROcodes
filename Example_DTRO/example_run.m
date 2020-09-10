@@ -1,7 +1,12 @@
+% Example script to run the TI-DTRO algorithm.
+
+% Author: Cem Musluoglu, KU Leuven, Department of Electrical Engineering
+% (ESAT), STADIUS Center for Dynamical Systems, Signal Processing and Data
+% Analytics
+% Correspondence: cemates.musluoglu@esat.kuleuven.be
+
 clear all
 close all
-
-% Example code to run the TI-DTRO algorithm.
 
 % Number of nodes
 nbnodes=30;
@@ -58,7 +63,7 @@ for n_runs=1:mc_runs
     debug=0;
 
     % Centralized trace ratio, used as ground truth
-    [W_star,rho]=trace_ratio(Q,nbsens,Ruu,Rvv,params.denom_sum);
+    [X_star,rho]=trace_ratio(Q,nbsens,Ruu,Rvv,params.denom_sum);
 
     % Convergence criteria for the distributed trace ratio
     conv=struct;
@@ -70,7 +75,7 @@ for n_runs=1:mc_runs
     graph_adj=(ones(nbnodes,nbnodes)-eye(nbnodes));
 
     % TI-DTRO
-    [W,rho_track,norm_track,norm_star_track]=ti_dtro(params,data,graph_adj,conv,debug,W_star);
+    [X,rho_track,norm_track,norm_star_track]=ti_dtro(params,data,graph_adj,conv,debug,X_star);
     
     data_cell{n_runs}=norm_star_track;
 

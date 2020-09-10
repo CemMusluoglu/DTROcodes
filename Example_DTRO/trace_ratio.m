@@ -1,5 +1,5 @@
 function [W,rho]=trace_ratio(Q,M,Ruu,Rvv,denom_sum)
-% Implementation of the centralized TRO
+% Implementation of the centralized Trace Ratio Optimization problem
 % INPUT: 
 % M: Total
 % Q: Number of filters
@@ -10,6 +10,11 @@ function [W,rho]=trace_ratio(Q,M,Ruu,Rvv,denom_sum)
 % OUTPUTS:
 % W (M x Q): Estimation of a solution of the TRO problem
 % rho: Evaluation of the TRO at W
+%
+% Author: Cem Musluoglu, KU Leuven, Department of Electrical Engineering
+% (ESAT), STADIUS Center for Dynamical Systems, Signal Processing and Data
+% Analytics
+% Correspondence: cemates.musluoglu@esat.kuleuven.be
 
     i=0;
     winit=randn(M,Q);

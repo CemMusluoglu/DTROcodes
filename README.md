@@ -24,4 +24,4 @@ The folder *dtro_full* contains the codes to obtain the graphs shown in [1]. Mor
 
 ## References ##
 
-[1] C. A. Musluoglu and A. Bertrand, “Distributed adaptive trace ratio optimization in wireless sensor networks”.
+[1] C. A. Musluoglu and A. Bertrand "Distributed Adaptive Trace Ratio Optimization in Wireless Sensor Networks", Internal Report KU Leuven, 2020.

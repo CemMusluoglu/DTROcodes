@@ -26,6 +26,6 @@ Used for the legends in the plots.
 
 ## References ##
 
-[1] C. A. Musluoglu and A. Bertrand, “Distributed adaptive trace ratio optimization in wireless sensor networks”.
+[1] C. A. Musluoglu and A. Bertrand "Distributed Adaptive Trace Ratio Optimization in Wireless Sensor Networks", Internal Report KU Leuven, 2020.
 
 [2] Perraudin Nathanaël, Johan Paratte, David Shuman, Lionel Martin, Vassilis Kalofolias, Pierre Vandergheynst and David K. Hammond}, GSPBOX: A toolbox for signal processing on graphs. Arxiv e-print, 08-2014.

@@ -14,6 +14,11 @@ function [Ufull,Vfull]=create_data(nbsamples,nbsensnode,nbnodes,Q,D)
 % OUTPUTS:
 % Ufull, Vfull (nbsamples x sum(nbsensnode)): Matrices containing
 %               the desired and interfering signals respectively.
+%
+% Author: Cem Musluoglu, KU Leuven, Department of Electrical Engineering
+% (ESAT), STADIUS Center for Dynamical Systems, Signal Processing and Data
+% Analytics
+% Correspondence: cemates.musluoglu@esat.kuleuven.be
    
 noisepower=0.1; 
 signalvar=0.5;

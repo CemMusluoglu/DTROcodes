@@ -41,12 +41,10 @@ function [w,rho_track,norm_track,norm_star_track]=ti_dtro(params,data,graph_adj,
 % norm_track (nbiter x 1)     : Sequence of ||W^(i+1)-W^(i)||_F^2
 % norm_star_track (nbiter x 1): Sequence of ||W^(i)-W^*||_F^2
 %
-% EXTERNAL FUNCTIONS
-% dijkstra.m : Joseph Kirk (2020). Dijkstra's Shortest Path Algorithm 
-% https://www.mathworks.com/matlabcentral/fileexchange/20025-dijkstra-s-minimum-cost-path-algorithm?s_tid=prof_contriblnk
-% MATLAB Central File Exchange.
-%
-% Can be replaced by other algorithms pruning the graph to a tree.
+% Author: Cem Musluoglu, KU Leuven, Department of Electrical Engineering
+% (ESAT), STADIUS Center for Dynamical Systems, Signal Processing and Data
+% Analytics
+% Correspondence: cemates.musluoglu@esat.kuleuven.be
 
 
 
