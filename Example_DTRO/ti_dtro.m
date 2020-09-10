@@ -156,7 +156,7 @@ end
 end
 
 function [neighbors,path]=find_path(q,adj)
-    [dist,path]=shortest_path.m(adj,q);
+    [dist,path]=shortest_path(adj,q);
     neighbors=find(cell2mat(cellfun(@(c) length(c), path, 'uniform', false))==2);
     neighbors=sort(neighbors);
 end

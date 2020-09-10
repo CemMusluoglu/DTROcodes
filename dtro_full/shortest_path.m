@@ -29,7 +29,7 @@ function [dist,path]=shortest_path(adj,q)
     for k=1:K
         jmp=k;
         path_k=[k];
-        while(jmp~=1)
+        while(jmp~=q)
             jmp=pred(jmp);
             path_k=[jmp,path_k];
         end

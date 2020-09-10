@@ -49,10 +49,10 @@ conv.nbiter=-1;
 % If debug==1, there is a plot showing dynamically the comparison
 % between the first column of a theoretical optimal vector
 % and the estimation.
-debug=1;
+debug=0;
 
 % Centralized trace ratio, used as ground truth
-[W_star,rho]=trace_ratio(Q,nbsens,Ruu,Rvv);
+[W_star,rho]=trace_ratio(Q,nbsens,Ruu,Rvv,params.denom_sum);
 
 % Convergence criteria for the distributed trace ratio
 conv=struct;
