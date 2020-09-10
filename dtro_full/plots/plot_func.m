@@ -3,8 +3,8 @@ close all
 %%
 % Plot convergence in objective for different trees
 
-data_topo=load('topo.mat');
-data_topo_er=load('topo_er.mat');
+data_topo=load('../topo.mat');
+%data_topo_er=load('topo_er.mat');
 %data_topo.norm_star_cell_ER_03=data_topo_er.norm_star_cell_ER_03;
 %data_topo.norm_star_cell_ER_06=data_topo_er.norm_star_cell_ER_06;
 %data_topo.norm_star_cell_ER_09=data_topo_er.norm_star_cell_ER_09;
@@ -15,9 +15,9 @@ plot_functions(data_topo.norm_star_cell_TR2,'PNS','c','-',length(data_topo.norm_
 plot_functions(data_topo.norm_star_cell_RT,'PNS',[0.4660, 0.6740, 0.1880],'-',length(data_topo.norm_star_cell_RT{1}));
 plot_functions(data_topo.norm_star_cell_TR5,'PNS','m','-',length(data_topo.norm_star_cell_TR5{1}));
 plot_functions(data_topo.norm_star_cell_TS,'PNS','b','-',length(data_topo.norm_star_cell_TS{1}));
-plot_functions(data_topo_er.norm_star_cell_ER_03,'PNS','g','-',length(data_topo_er.norm_star_cell_ER_03{1}));
-plot_functions(data_topo_er.norm_star_cell_ER_06,'PNS',[0.8500, 0.3250, 0.0980],'-',length(data_topo_er.norm_star_cell_ER_06{1}));
-plot_functions(data_topo_er.norm_star_cell_ER_09,'PNS',[0.8500, 0.6, 0.0980],'-',length(data_topo_er.norm_star_cell_ER_09{1}));
+plot_functions(data_topo.norm_star_cell_ER_03,'PNS','g','-',length(data_topo.norm_star_cell_ER_03{1}));
+plot_functions(data_topo.norm_star_cell_ER_06,'PNS',[0.8500, 0.3250, 0.0980],'-',length(data_topo.norm_star_cell_ER_06{1}));
+plot_functions(data_topo.norm_star_cell_ER_09,'PNS',[0.8500, 0.6, 0.0980],'-',length(data_topo.norm_star_cell_ER_09{1}));
 plot_functions(data_topo.norm_star_cell_FC,'PNS','k','-',length(data_topo.norm_star_cell_FC{1}));
 grid on
 ylim([1e-6,inf])
@@ -40,9 +40,9 @@ ac_tr2=alg_connect('TR',31,2);
 ac_rt=median(cell2mat(data_topo.alg_c_RT));
 ac_tr5=alg_connect('TR',31,5);
 ac_ts=alg_connect('TS',31);
-ac_er_03=median(cell2mat(data_topo_er.alg_c_ER_03));
-ac_er_06=median(cell2mat(data_topo_er.alg_c_ER_06));
-ac_er_09=median(cell2mat(data_topo_er.alg_c_ER_09));
+ac_er_03=median(cell2mat(data_topo.alg_c_ER_03));
+ac_er_06=median(cell2mat(data_topo.alg_c_ER_06));
+ac_er_09=median(cell2mat(data_topo.alg_c_ER_09));
 ac_fc=alg_connect('FC',31);
 
 legend_tp=[char("Path,\hskip 2em AC: ") num2str(ac_tp,'%.3f')];
@@ -69,10 +69,10 @@ xlabel('Iterations $i$','Interpreter','latex','FontSize', 20)
 set(gcf,'Position',[440   378   560   380])
 %%
 
-qeq7=load('Q7.mat');
-qeq5=load('Q5.mat');
-qeq3=load('Q3.mat');
-qeq1=load('Q1.mat');
+qeq7=load('../Q7.mat');
+qeq5=load('../Q5.mat');
+qeq3=load('../Q3.mat');
+qeq1=load('../Q1.mat');
 
 % Plot convergence in argument
 
@@ -116,8 +116,8 @@ set(gcf,'Position',[440   378   560   280])
 
 %%
 
-qeq10=load('K10.mat');
-qeq50=load('K50.mat');
+qeq10=load('../K10.mat');
+qeq50=load('../K50.mat');
 
 plot_functions(qeq10.norm_star_cell_FC,'PNS','r','-',length(qeq10.norm_star_cell_FC{1}));
 plot_functions(qeq10.norm_star_cell_RT,'PNS','r','--',length(qeq10.norm_star_cell_RT{1}));
@@ -158,7 +158,7 @@ set(gcf,'Position',[440   378   560   280])
 
 % Plot convergence rate
 
-conv_rate=load('conv_rate.mat');
+conv_rate=load('../conv_rate.mat');
 
 x_int=[2:3000];
 data_mat=cell2mat(conv_rate.norm_star_cell_RT');

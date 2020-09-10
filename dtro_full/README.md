@@ -7,7 +7,7 @@ The following scripts contain implement independent Monte-Carlo runs, and can th
 
 Each script outputs a '_.mat' file, which can then be used to plot the results shown in [1].  
 
-`plot_func.m` : Script in the *plots* folder which plots the figures in [1]. Assumes the '_.mat' data files are in the *plots* folder.  
+`plot_func.m` : Script in the *plots* folder which plots the figures in [1]. Assumes the '_.mat' data files are in the folder above the *plots* folder.  
 
 **EXTERNAL DEPENDENCIES**:  
 * `dijkstra.m` : Joseph Kirk (2020). Dijkstra's Shortest Path Algorithm 
