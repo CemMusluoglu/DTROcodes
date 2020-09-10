@@ -1,4 +1,5 @@
 function [dist,path]=shortest_path(adj,q)
+
     K=size(adj,1);
     dist=Inf(K,1);
     dist(q)=0;

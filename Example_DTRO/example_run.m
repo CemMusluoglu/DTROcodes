@@ -19,58 +19,79 @@ Q_data=5;
 Q=5;
 % Total number of point sources
 D=10;
+% Number of Monte-Carlo runs
+mc_runs=10;
 
-% Desired and interfering signals respectively
-[Ufull,Vfull]=create_data(nbsamples,nbsensnode,nbnodes,Q_data,D);
+data_cell=cell(mc_runs,1);
 
-% Covariance matrices
-Ruu=1/nbsamples*conj(Ufull'*Ufull);
-Rvv=1/nbsamples*conj(Vfull'*Vfull);
-Ruu=make_sym(Ruu);
-Rvv=make_sym(Rvv);
-data=struct;
-data.R_first=Ruu;
-data.R_second=Rvv;
+for n_runs=1:mc_runs
+    
+    % Desired and interfering signals respectively
+    [Ufull,Vfull]=create_data(nbsamples,nbsensnode,nbnodes,Q_data,D);
 
-params=struct;
-params.nbsens=nbsens;
-params.Q=Q;
-params.nbnodes=nbnodes;
-params.nbsensnode=nbsensnode;
-params.denom_sum=0;
+    % Covariance matrices
+    Ruu=1/nbsamples*conj(Ufull'*Ufull);
+    Rvv=1/nbsamples*conj(Vfull'*Vfull);
+    Ruu=make_sym(Ruu);
+    Rvv=make_sym(Rvv);
+    data=struct;
+    data.R_first=Ruu;
+    data.R_second=Rvv;
 
-% Convergence criteria for the centralized trace ratio
-% Stops at whichever is achieved last
-% If one of them is non-positive, the positive one will be taken into account
-conv=struct;
-conv.tol_rho=1e-12;
-conv.nbiter=-1;
+    params=struct;
+    params.nbsens=nbsens;
+    params.Q=Q;
+    params.nbnodes=nbnodes;
+    params.nbsensnode=nbsensnode;
+    params.denom_sum=0;
 
-% If debug==1, there is a plot showing dynamically the comparison
-% between the first column of a theoretical optimal vector
-% and the estimation.
-debug=0;
+    % Convergence criteria for the centralized trace ratio
+    % Stops at whichever is achieved last
+    % If one of them is non-positive, the positive one will be taken into account
+    conv=struct;
+    conv.tol_rho=1e-12;
+    conv.nbiter=-1;
 
-% Centralized trace ratio, used as ground truth
-[W_star,rho]=trace_ratio(Q,nbsens,Ruu,Rvv,params.denom_sum);
+    % If debug==1, there is a plot showing dynamically the comparison
+    % between the first column of a theoretical optimal vector
+    % and the estimation.
+    debug=0;
 
-% Convergence criteria for the distributed trace ratio
-conv=struct;
-conv.tol_rho=-1;
-conv.nbiter=300;
+    % Centralized trace ratio, used as ground truth
+    [W_star,rho]=trace_ratio(Q,nbsens,Ruu,Rvv,params.denom_sum);
 
-% Create an adjacency matrix
-% Example: Fully connected
-graph_adj=(ones(nbnodes,nbnodes)-eye(nbnodes));
+    % Convergence criteria for the distributed trace ratio
+    conv=struct;
+    conv.tol_rho=-1;
+    conv.nbiter=300;
 
-% TI-DTRO
-[W,rho_track,norm_track,norm_star_track]=ti_dtro(params,data,graph_adj,conv,debug,W_star);
+    % Create an adjacency matrix
+    % Example: Fully connected
+    graph_adj=(ones(nbnodes,nbnodes)-eye(nbnodes));
+
+    % TI-DTRO
+    [W,rho_track,norm_track,norm_star_track]=ti_dtro(params,data,graph_adj,conv,debug,W_star);
+    
+    data_cell{n_runs}=norm_star_track;
+
+end
 
 % Plot the MSE
-loglog(norm_star_track,'b','LineWidth',2)
-xlabel('Iterations','Interpreter','latex')
-ylabel('$\frac{1}{MQ}||W^{i}-W^*||_2^F$','Interpreter','latex')
-grid on
 
+x_int=[1:conv.nbiter];
+q_5=quantile(cell2mat(data_cell),0.5);
+q_25=quantile(cell2mat(data_cell),0.25);
+q_75=quantile(cell2mat(data_cell),0.75);
+loglog(q_5,'b','LineWidth',2);
+
+hold on
+fill([x_int,fliplr(x_int)],[q_5,fliplr(q_75)],'b','FaceAlpha','0.2','LineStyle','none')
+fill([x_int,fliplr(x_int)],[q_5,fliplr(q_25)],'b','FaceAlpha','0.2','LineStyle','none')
+xlim([1,inf])
+ylim([1e-10,inf])
+
+xlabel('Iterations','Interpreter','latex')
+ylabel('$\frac{1}{MQ}||X^{i}-X^*||_2^F$','Interpreter','latex')
+grid on
 
 
