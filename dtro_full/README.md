@@ -10,11 +10,6 @@ Each script outputs a '_.mat' file, which can then be used to plot the results s
 `plot_func.m` : Script in the *plots* folder which plots the figures in [1]. Assumes the '_.mat' data files are in the folder above the *plots* folder.  
 
 **EXTERNAL DEPENDENCIES**:  
-* `dijkstra.m` : Joseph Kirk (2020). Dijkstra's Shortest Path Algorithm 
-https://www.mathworks.com/matlabcentral/fileexchange/20025-dijkstra-s-minimum-cost-path-algorithm?s_tid=prof_contriblnk, 
-MATLAB Central File Exchange.  
-
-Used to compute the shortest path pruning of a connected network. **Note: This function can be replaced by other algorithms pruning the graph to a tree.**  
 
 * The *Random trees* package https://www.mathworks.com/matlabcentral/fileexchange/2516-random-trees .  
 
